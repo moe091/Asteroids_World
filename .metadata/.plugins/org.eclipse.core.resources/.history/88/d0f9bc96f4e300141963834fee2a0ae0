@@ -1,0 +1,10 @@
+package com.moe.arpg;
+
+public class StatsComponent extends Component{
+
+	public float power = 100.0f;
+	public float turnSpeed = 10.0f;
+	public float maxVel = 1000.0f;
+	public int health = 100;
+	
+}

@@ -1,6 +1,10 @@
 package com.moe.arpg;
 
 import com.badlogic.ashley.core.ComponentMapper;
+import com.moe.components.BodyComponent;
+import com.moe.components.ControllerComponent;
+import com.moe.components.RenderComponent;
+import com.moe.components.StatsComponent;
 import com.moe.components.WeaponComponent;
 
 public class Mappers {

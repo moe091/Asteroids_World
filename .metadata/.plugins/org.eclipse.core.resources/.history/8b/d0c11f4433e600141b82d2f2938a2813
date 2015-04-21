@@ -1,0 +1,5 @@
+package com.moe.components;
+
+public class WeaponComponent {
+
+}

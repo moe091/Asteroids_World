@@ -1,0 +1,40 @@
+package com.moe.arpg;
+
+import com.badlogic.ashley.core.Component;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.physics.box2d.Body;
+
+public class ParallaxBg {
+	
+	Sprite[] sprites;
+	
+	Sprite follow;
+	
+	public ParallaxBg(Sprite base, Sprite follow) {
+		sprites = new Sprite[4];
+		
+		for (int i = 0; i < 4; i++) {
+			sprites[i] = new Sprite(base);
+			sprites[i].setScale(0.5f, 0.5f);
+		}
+		
+		sprites[0].setPosition(follow.getX() - 10, follow.getY() - 10);
+		sprites[1].setPosition(follow.getX(), follow.getY() - 10);
+		sprites[2].setPosition(follow.getX() - 10, follow.getY());
+		sprites[3].setPosition(follow.getX(), follow.getY());
+	}
+	
+	public void update() {
+		
+		
+	}
+	
+	public void render(SpriteBatch batch) {
+		for (int i = 0; i < 4; i++) {
+			sprites[i].draw(batch);
+			System.out.println("drawing sprite " + i + ": " + sprites[i].getX() + ", " + sprites[i].getY());
+		}
+	}
+
+}

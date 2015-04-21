@@ -1,0 +1,13 @@
+package com.moe.arpg;
+
+import com.badlogic.ashley.core.Engine;
+import com.badlogic.ashley.core.EntitySystem;
+import com.badlogic.ashley.core.Family;
+
+public class ControlSystem extends EntitySystem {
+ImmutableArray<Entity> entities = new ImmutableArray<Entity>(); 
+
+	public void addedToEngine(Engine engine) {
+        entities = engine.getEntitiesFor(Family.all(BodyComponent.class, ControllerComponent.class).get());
+    }
+}

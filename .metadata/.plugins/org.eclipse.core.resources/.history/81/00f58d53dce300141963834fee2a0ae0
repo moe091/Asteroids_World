@@ -1,0 +1,5 @@
+package com.moe.arpg;
+
+public class VelocityComponent extends Component {
+
+}

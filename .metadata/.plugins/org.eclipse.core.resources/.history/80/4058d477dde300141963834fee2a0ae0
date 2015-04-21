@@ -1,0 +1,9 @@
+package com.moe.arpg;
+
+import com.badlogic.ashley.core.EntitySystem;
+
+public class MovementSystem extends EntitySystem {
+
+	
+	
+}

@@ -1,0 +1,12 @@
+package Systems;
+
+import com.badlogic.ashley.core.Entity;
+import com.badlogic.gdx.utils.Array;
+
+public class WeaponSystem {
+Array<Entity> entities = new Array<Entity>();
+	
+	public void addEntity(Entity e) {
+		entities.add(e);
+	}
+}

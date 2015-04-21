@@ -1,0 +1,103 @@
+package com.moe.arpg;
+
+import Systems.WeaponSystem;
+
+import com.badlogic.ashley.core.Engine;
+import com.badlogic.ashley.core.Entity;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.utils.Array;
+import com.moe.components.WeaponComponent;
+
+public class GameManager {
+	Engine engine;
+	GdxGame gdx;
+	Input input;
+	
+	
+	Array<Long> IDs;
+	Entity ent;
+	Entity box;
+	Entity trash;
+	Entity bg;
+	
+	RenderSystem renderSys;
+	SynchSystem synchSys;
+	ControlSystem controlSys;
+	
+	Array<Entity> entities = new Array<Entity>();
+	
+	public GameManager(GdxGame gdx) {
+		this.gdx = gdx;
+		engine = new Engine();
+
+		synchSys = new SynchSystem(gdx.world, gdx.camera);
+		controlSys = new ControlSystem();
+		renderSys = new RenderSystem(gdx.batch);
+		
+		engine.addSystem(synchSys);
+		engine.addSystem(controlSys);
+		engine.addSystem(renderSys);
+		
+		
+		IDs = new Array<Long>();
+		
+		
+		trash = new Entity();
+		trash.add(new RenderComponent(new Texture("bg.png")));
+		
+		box = new Entity();
+		box.add(new RenderComponent(new Texture("box.png")));
+		box.add(new BodyComponent(gdx.world, Mappers.rm.get(box)));
+		box.add(new ControllerComponent());
+		
+		ent = new Entity();
+		ent.add(new RenderComponent(new Texture("small_green.png")));
+		ent.add(new BodyComponent(gdx.world, Mappers.rm.get(ent), 60, 40, 0.6f));
+		ent.add(new ControllerComponent());
+		ent.add(new StatsComponent());
+		ent.add(new WeaponComponent().setVel(50000f).setTexture(new Texture("proj_blue.png")));
+		IDs.add(ent.getId()); 
+		
+		//bg = new Entity();
+		//bg.add(new RenderComponent(new Texture("bg.png"), gdx.batch));
+		
+		synchSys.addEntity(trash);
+		controlSys.addEntity(trash);
+		renderSys.addEntity(trash);
+		
+		synchSys.addEntity(ent);
+		controlSys.addEntity(ent);
+		renderSys.addEntity(ent);
+		WeaponSystem.addEntity(ent);
+		Mappers.bm.get(ent).body.setLinearDamping(0.4f);
+		
+		synchSys.addEntity(box);
+		controlSys.addEntity(box);
+		renderSys.addEntity(box);
+		
+		
+		
+		
+		
+		input = new Input(ent);
+		
+	}
+	
+	
+	
+	public void update() {
+		
+		gdx.camera.translate(Mappers.rm.get(ent).sprite.getX() - gdx.camera.position.x + 40, Mappers.rm.get(ent).sprite.getY() - gdx.camera.position.y + 40);
+		gdx.camera.update();
+		
+		input.update(Gdx.graphics.getDeltaTime());
+		engine.update(Gdx.graphics.getDeltaTime());
+		
+		
+		//SynchSystem.debugRenderer.render(gdx.world, gdx.camera.combined);
+		
+		
+	}
+}

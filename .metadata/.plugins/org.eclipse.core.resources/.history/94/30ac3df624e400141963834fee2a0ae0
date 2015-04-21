@@ -1,0 +1,11 @@
+package com.moe.arpg;
+
+import com.badlogic.ashley.core.EntitySystem;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
+public class RenderSystem extends EntitySystem {
+
+	public RenderSystem(SpriteBatch batch) {
+		
+	}
+}

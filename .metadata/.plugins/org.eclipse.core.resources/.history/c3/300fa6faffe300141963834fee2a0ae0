@@ -1,0 +1,17 @@
+package com.moe.arpg;
+
+public class Input {
+ControllerComponent controller;
+	
+	public Input() {
+		
+	}
+	
+	public Input(ControllerComponent controller) {
+		this.controller = controller;
+	}
+	
+	public void setController(ControllerComponent controller) {
+		this.controller = controller;
+	}
+}

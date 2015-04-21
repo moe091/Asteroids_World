@@ -1,0 +1,62 @@
+package com.moe.arpg;
+
+import com.badlogic.ashley.core.Engine;
+import com.badlogic.ashley.core.Entity;
+import com.badlogic.ashley.core.EntitySystem;
+import com.badlogic.ashley.core.Family;
+import com.badlogic.ashley.utils.ImmutableArray;
+import com.badlogic.gdx.utils.Array;
+
+
+/*
+ * Use regular EntitySystem class
+ * addedToEngine adds all the entities in the family to array
+ * libgdx Array class used to hold entities
+ * addEntity function to add entities later on
+ * private variables to hold each frequently used component type, to be reused for each entity each frame during update
+ * infrequently used components will just be used int he update function by retrieving it with Mapper
+ */
+public class ControlSystem extends EntitySystem {
+Array<Entity> ents = new Array<Entity>();
+
+ControllerComponent cController;
+StatsComponent cStats;
+BodyComponent cBody;
+	public void addedToEngine(Engine engine) {
+        ImmutableArray<Entity> entities = engine.getEntitiesFor(Family.getFor(ControllerComponent.class, RenderComponent.class));
+        
+        ents = new Array<Entity>();
+        for (int i = 0; i < entities.size(); i++) {
+        	ents.add(entities.get(i));
+        }
+        
+    }
+	
+	public void addEntity(Entity e) {
+		ents.add(e);
+	}
+	
+	public void update(float delta) {
+		
+		for(Entity e : ents) {
+			cController = Mappers.cm.get(e);
+			
+		}
+		
+		
+	}
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

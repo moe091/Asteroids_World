@@ -3,6 +3,8 @@ package com.moe.arpg;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
+import com.moe.components.ControllerComponent;
+import com.moe.components.StatsComponent;
 
 public class Input {
 ControllerComponent controller;

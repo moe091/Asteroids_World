@@ -1,0 +1,15 @@
+package com.moe.arpg;
+
+import com.badlogic.ashley.core.Component;
+
+public class ControllerComponent extends Component {
+
+	public float thrust = 500.0f;
+	public float rotate = 0.0f;
+	boolean fire = false;
+	boolean active1 = false;
+	boolean active2 = false;
+	boolean active3 = false;
+	boolean active4 = false;
+	boolean special = false;
+}

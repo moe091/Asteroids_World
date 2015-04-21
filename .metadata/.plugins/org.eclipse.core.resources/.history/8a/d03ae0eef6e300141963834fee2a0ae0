@@ -1,0 +1,46 @@
+package com.moe.arpg;
+
+import com.badlogic.ashley.core.Entity;
+import com.badlogic.ashley.core.EntitySystem;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
+import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.utils.Array;
+
+public class SynchSystem extends EntitySystem {
+	World world;
+	OrthographicCamera camera;
+	Box2DDebugRenderer debugRenderer = new Box2DDebugRenderer();
+	Array<Body> bodies = new Array<Body>();
+	private Array<Entity> ents = new Array<Entity>();
+	private BodyComponent cBody;
+	private RenderComponent cRender;
+	
+	public SynchSystem(World world, OrthographicCamera camera) {
+		this.world = world;
+		this.camera = camera;
+	}
+	
+	public void addEntity(Entity ent) {
+		ents.add(ent);
+	}
+	
+	public void update(float delta) {
+		world.step(Gdx.graphics.getDeltaTime(), 6, 2);
+			
+		//debugRenderer.render(world, camera.combined);
+
+		for (Entity e : ents) {
+			Mappers.rm.get(e).sprite.setPosition(Mappers.bm.get(e).body.getPosition().x, Mappers.bm.get(e).body.getPosition().y);
+			Mappers.rm.get(e).sprite.setRotation(MathUtils.radiansToDegrees * Mappers.bm.get(e).body.getAngle());
+			Mappers.bm.get(e).body.applyForce(100, 220, 2, 37, false);
+			
+		}
+		
+		world.getBodies(bodies);
+	}
+
+}

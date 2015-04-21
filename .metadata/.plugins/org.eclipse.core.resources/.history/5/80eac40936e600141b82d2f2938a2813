@@ -1,0 +1,30 @@
+package com.moe.components;
+
+import com.badlogic.ashley.core.Component;
+import com.badlogic.gdx.graphics.Texture;
+
+public class WeaponComponent extends Component {
+
+	
+	public WeaponComponent() {
+		
+	}
+	
+	public WeaponComponent setVel(float vel) {
+		this.vel = vel;
+		return this;
+	}
+	
+	public WeaponComponent setDmg(float dmg) {
+		this.dmg = dmg;
+		return this;
+	}
+	
+	
+	public float vel = 100f;
+	public float dmg = 5f;
+	public Texture img;
+	public float cooldown = 1f;
+	public float cooldownEnd = 0f;
+	
+}

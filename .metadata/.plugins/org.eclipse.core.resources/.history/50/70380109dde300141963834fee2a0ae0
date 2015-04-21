@@ -1,0 +1,6 @@
+package com.moe.arpg;
+
+public class Mappers {
+
+	public static ComponentMapper<PositionComponent> pm = new ComponentMapper<PositionComponent>();
+}

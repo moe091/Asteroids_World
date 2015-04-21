@@ -1,0 +1,8 @@
+package com.moe.arpg;
+
+import com.badlogic.ashley.core.Component;
+
+public class ControllerComponent extends Component {
+
+	public float thrust = 10.0f;
+}

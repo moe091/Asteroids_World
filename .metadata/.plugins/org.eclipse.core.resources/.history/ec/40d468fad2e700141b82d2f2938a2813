@@ -1,0 +1,26 @@
+package com.moe.components;
+
+import com.badlogic.ashley.core.Component;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.physics.box2d.Body;
+
+public class ParallaxBg {
+	
+	Sprite[] sprites;
+	
+	
+	
+	public ParallaxComponent(Sprite base, Body follow) {
+		sprites = new Sprite[4];
+		
+		for (int i = 0; i < 4; i++) {
+			sprites[i] = new Sprite(base);
+		}
+		
+		sprites[0].setPosition(follow.getPosition().x - 10, follow.getPosition().y - 10);
+		sprites[1].setPosition(follow.getPosition().x, follow.getPosition().y - 10);
+		sprites[2].setPosition(follow.getPosition().x - 10, follow.getPosition().y);
+		sprites[3].setPosition(follow.getPosition().x, follow.getPosition().y);
+	}
+
+}

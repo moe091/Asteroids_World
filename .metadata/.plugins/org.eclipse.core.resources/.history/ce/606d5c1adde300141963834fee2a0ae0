@@ -1,0 +1,9 @@
+package com.moe.arpg;
+
+import com.badlogic.ashley.core.ComponentMapper;
+
+public class Mappers {
+
+	public static ComponentMapper<PositionComponent> pm = ComponentMapper.getFor(PositionComponent.class);
+	public static ComponentMapper<VelocityComponent> vm = ComponentMapper.getFor(VelocityComponent.class);
+}

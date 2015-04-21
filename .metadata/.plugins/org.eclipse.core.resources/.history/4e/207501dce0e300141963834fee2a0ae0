@@ -1,0 +1,41 @@
+package com.moe.arpg;
+
+import com.badlogic.ashley.core.ComponentMapper;
+import com.badlogic.ashley.core.Engine;
+import com.badlogic.ashley.core.Entity;
+import com.badlogic.ashley.core.EntitySystem;
+import com.badlogic.ashley.core.Family;
+import com.badlogic.ashley.utils.ImmutableArray;
+import com.badlogic.gdx.utils.Array;
+
+public class MovementSystem extends EntitySystem {
+
+	private Array<Entity> ents = new Array<Entity>();
+	
+	private PositionComponent cPos;
+	private VelocityComponent cVel;
+	private RenderComponent cRen;
+	
+	
+	public void addEntity(Entity ent) {
+		ents.add(ent);
+	}
+	
+	public void update(float delta) {
+		System.out.println("update: " + ents.size);
+		for (int i = 0; i < ents.size; i++) {
+			System.out.println("\n i: " + i + "\n");
+			
+			cPos = Mappers.pm.get(ents.get(i));
+			cVel = Mappers.vm.get(ents.get(i));
+			cRen = Mappers.rm.get(ents.get(i));
+			
+			cPos.x+= cVel.xVel;
+			cPos.y+= cVel.yVel;
+			
+		}
+	}
+	
+}
+
+

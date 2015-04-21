@@ -1,0 +1,53 @@
+package Systems;
+
+import com.badlogic.ashley.core.Entity;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.utils.Array;
+import com.moe.arpg.BodyComponent;
+import com.moe.arpg.ControllerComponent;
+import com.moe.arpg.Mappers;
+import com.moe.arpg.RenderComponent;
+import com.moe.components.WeaponComponent;
+
+public class WeaponSystem {
+Array<Entity> entities = new Array<Entity>();
+ControllerComponent cController;
+WeaponComponent cWeapon;
+BodyComponent cBody;
+World world;
+
+	public WeaponSystem(World world) {
+		this.world = world;
+	}
+
+	public void addEntity(Entity e) {
+		entities.add(e);
+	}
+	
+	public void update(float delta) {
+		
+		for (Entity e : entities) {
+			cController = Mappers.cm.get(e);
+			if (cController != null) {
+				cWeapon = Mappers.wm.get(e);
+				cBody = Mappers.bm.get(e);
+				if (cController.fire) {
+					if (Gdx.graphics.getDeltaTime() > cWeapon.cooldownEnd) {
+						fire();
+					}
+				}
+				
+			}
+		}
+		
+	}
+	
+	public void fire() {
+		Entity bullet = new Entity();
+		bullet.add(new RenderComponent(cWeapon.img));
+		bullet.add(new BodyComponent(world, Mappers.rm.get(bullet), cBody.body.getPosition().x, cBody.body.getPosition().y));
+	}
+	
+	
+}

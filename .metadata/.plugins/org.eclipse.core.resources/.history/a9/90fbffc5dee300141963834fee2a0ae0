@@ -1,0 +1,19 @@
+package com.moe.arpg;
+
+import com.badlogic.ashley.core.Component;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
+public class RenderComponent extends Component {
+
+	Texture texture;
+	SpriteBatch batch;
+	
+	public void setTexture(Texture texture) {
+		this.texture = texture;
+	}
+	
+	public void setBatch(SpriteBatch batch) {
+		this.batch = batch;
+	}
+}

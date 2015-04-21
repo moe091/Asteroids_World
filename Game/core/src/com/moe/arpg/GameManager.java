@@ -1,6 +1,6 @@
 package com.moe.arpg;
 
-import Systems.WeaponSystem;
+
 
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
@@ -8,6 +8,14 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.utils.Array;
+import com.moe.Systems.ControlSystem;
+import com.moe.Systems.RenderSystem;
+import com.moe.Systems.SynchSystem;
+import com.moe.Systems.WeaponSystem;
+import com.moe.components.BodyComponent;
+import com.moe.components.ControllerComponent;
+import com.moe.components.RenderComponent;
+import com.moe.components.StatsComponent;
 import com.moe.components.WeaponComponent;
 
 public class GameManager {
@@ -26,6 +34,8 @@ public class GameManager {
 	public SynchSystem synchSys;
 	public ControlSystem controlSys;
 	public WeaponSystem weaponSys;
+	
+	ParallaxBg parBg;
 	
 	Array<Entity> entities = new Array<Entity>();
 	
@@ -48,7 +58,7 @@ public class GameManager {
 		
 		
 		trash = new Entity();
-		trash.add(new RenderComponent(new Texture("bg.png")));
+		//trash.add(new RenderComponent(new Texture("stars.png")));
 		
 		box = new Entity();
 		box.add(new RenderComponent(new Texture("box.png")));
@@ -66,9 +76,9 @@ public class GameManager {
 		//bg = new Entity();
 		//bg.add(new RenderComponent(new Texture("bg.png"), gdx.batch));
 		
-		synchSys.addEntity(trash);
-		controlSys.addEntity(trash);
-		renderSys.addEntity(trash);
+		//synchSys.addEntity(trash);
+		//controlSys.addEntity(trash);
+		//renderSys.addEntity(trash);
 		
 		synchSys.addEntity(ent);
 		controlSys.addEntity(ent);
@@ -80,7 +90,8 @@ public class GameManager {
 		controlSys.addEntity(box);
 		renderSys.addEntity(box);
 		
-		
+	
+		parBg = new ParallaxBg(new Sprite(new Texture("stars.png")), Mappers.rm.get(ent).sprite);
 		
 		
 		
@@ -97,8 +108,8 @@ public class GameManager {
 		
 		input.update(Gdx.graphics.getDeltaTime());
 		engine.update(Gdx.graphics.getDeltaTime());
-		
-		
+		parBg.update();
+		parBg.render(gdx.batch);
 		//SynchSystem.debugRenderer.render(gdx.world, gdx.camera.combined);
 		
 		

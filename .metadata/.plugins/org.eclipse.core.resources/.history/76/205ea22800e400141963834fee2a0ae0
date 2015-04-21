@@ -1,0 +1,31 @@
+package com.moe.arpg;
+
+import com.badlogic.ashley.core.Entity;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Keys;
+
+public class Input {
+ControllerComponent controller;
+StatsComponent stats;
+Entity player;
+	
+	public Input() {
+		
+	}
+	
+	public Input(Entity player) {
+		this.player = player;
+	}
+	
+	public void setPlayer(Entity player) 	{
+		this.player = player;
+	}
+	
+	public void update(float delta) {
+		if (Gdx.input.isKeyPressed(Keys.A)) {
+			
+		}
+		
+	}
+	
+}

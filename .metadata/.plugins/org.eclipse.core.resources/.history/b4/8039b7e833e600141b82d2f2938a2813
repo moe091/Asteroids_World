@@ -1,0 +1,13 @@
+package com.moe.arpg;
+
+import com.badlogic.ashley.core.ComponentMapper;
+
+public class Mappers {
+
+	public static ComponentMapper<RenderComponent> rm = ComponentMapper.getFor(RenderComponent.class);
+	public static ComponentMapper<BodyComponent> bm = ComponentMapper.getFor(BodyComponent.class);
+	public static ComponentMapper<ControllerComponent> cm = ComponentMapper.getFor(ControllerComponent.class);
+	public static ComponentMapper<StatsComponent> sm = ComponentMapper.getFor(StatsComponent.class); 
+	public static ComponentMapper<WeaponComponent> wm = ComponentMapper.getFor(WeaponComponent.class);
+}
+

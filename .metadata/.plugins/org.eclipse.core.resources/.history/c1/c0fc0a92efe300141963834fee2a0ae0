@@ -1,0 +1,52 @@
+package com.moe.arpg;
+
+import com.badlogic.ashley.core.Entity;
+import com.badlogic.ashley.core.EntitySystem;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
+import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.utils.Array;
+
+public class PhysicsSystem extends EntitySystem {
+	World world;
+	OrthographicCamera camera;
+	Box2DDebugRenderer debugRenderer = new Box2DDebugRenderer();
+	Array<Body> bodies = new Array<Body>();
+	private Array<Entity> ents = new Array<Entity>();
+	private BodyComponent cBody;
+	
+	public PhysicsSystem(World world, OrthographicCamera camera) {
+		this.world = world;
+		this.camera = camera;
+	}
+	
+	public void addEntity(Entity ent) {
+		ents.add(ent);
+	}
+	
+	public void update(float delta) {
+		world.step(Gdx.graphics.getDeltaTime(), 6, 2);
+			
+		//debugRenderer.render(world, camera.combined);
+
+		for (Entity e : ents) {
+			System.out.println(Mappers.bm.get(e).body.getAngle());
+			Mappers.bm.get(e).body.applyForce(100, 220, 2, 37, false);
+			
+		}
+		
+		world.getBodies(bodies);
+	}
+
+}	cPos = Mappers.pm.get(ents.get(i));
+cVel = Mappers.vm.get(ents.get(i));
+cRen = Mappers.rm.get(ents.get(i));
+
+cPos.x+= cVel.xVel;
+cPos.y+= cVel.yVel;
+
+cRen.sprite.setPosition(cPos.x, cPos.y);
+cRen.sprite.setRotation(cPos.angle * MathUtils.radiansToDegrees);

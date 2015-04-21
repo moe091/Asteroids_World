@@ -1,0 +1,10 @@
+package com.moe.arpg;
+
+import com.badlogic.ashley.core.Component;
+
+public class VelocityComponent extends Component {
+
+	public float xVel = 0.0f;
+	public float yVel = 1.0f;
+	
+}

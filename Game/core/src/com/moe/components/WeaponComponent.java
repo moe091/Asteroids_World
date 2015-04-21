@@ -3,6 +3,15 @@ package com.moe.components;
 import com.badlogic.ashley.core.Component;
 import com.badlogic.gdx.graphics.Texture;
 
+/*
+ * Weapon Component
+ * 
+ * Adds a weapon to the entity
+ * 
+ * holds data about where/when/how to create projectiles when this weapon is fired.
+ * entities can have multiple weapons/weapon components
+ */
+
 public class WeaponComponent extends Component {
 
 	
@@ -33,7 +42,7 @@ public class WeaponComponent extends Component {
 	
 	
 	
-	public float vel = 100f;
+	public float vel = 1000f;
 	public float dmg = 5f;
 	public Texture img;
 	public long cooldown = 100;

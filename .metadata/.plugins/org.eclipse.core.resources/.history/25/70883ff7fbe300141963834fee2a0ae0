@@ -1,0 +1,42 @@
+package com.moe.arpg;
+
+import com.badlogic.ashley.core.Component;
+import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.badlogic.gdx.physics.box2d.Fixture;
+import com.badlogic.gdx.physics.box2d.FixtureDef;
+import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
+import com.badlogic.gdx.physics.box2d.PolygonShape;
+import com.badlogic.gdx.physics.box2d.World;
+
+public class BodyComponent extends Component {
+
+	Body body;
+	
+	
+	
+	
+	
+	public BodyComponent(World world, RenderComponent render) {
+		BodyDef bodyDef = new BodyDef();
+		bodyDef.type = BodyType.DynamicBody;
+		bodyDef.position.set(0, 30);
+		
+		body = world.createBody(bodyDef);
+		
+		PolygonShape shape = new PolygonShape();
+		shape.setAsBox(render.sprite.getWidth() / 20, render.sprite.getHeight() / 20);
+		
+		FixtureDef fixDef = new FixtureDef();
+		fixDef.shape = shape;
+		fixDef.density = 0.1f;
+		fixDef.friction = 0.1f;
+		fixDef.restitution = 0.1f;
+		
+		Fixture fixture = body.createFixture(fixDef);
+		
+		shape.dispose();
+		
+		
+	}
+}
